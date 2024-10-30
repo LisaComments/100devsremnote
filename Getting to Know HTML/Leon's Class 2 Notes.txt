@@ -1,0 +1,11 @@
+for accessibility - even if audience cannot read or see, they can hear the most important pieces of information 
+    <em> strong emphasis
+    <strong> Strong Importance
+containing elements
+    <div>
+    <section> - contains like elements together
+    <article> - contain things that're meant to be shared (i.e. blog posts, articles)
+    <aside> - extra content (i.e. ads)
+    <header> - grouping content at beginning of document
+    <footer> - grouping content at end of document
+

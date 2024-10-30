@@ -1,0 +1,140 @@
+What is the internet?→a wire that connects 2 different kinds of devices - client-side and server-side devices
+What are the separation of concerns?→an HTML file, JS file, CSS file
+Why use the separation of concerns?→organization for ourselves and team
+Why do we use semantics?
+    general users know where stuff is supposed to be
+    accessibility
+    SEO
+what are the three components that primarily make up a web page?
+    text
+    files
+    markup
+what format should your text be for HTML files and folder names?→lowercase and with a -
+what three things is HTML markup composed of?
+    elements
+    attributes
+    values
+What Are HTML & CSS?
+    HTML↔gives content structure, AKA meaning to it
+    CSS↔styles appearance of content
+    Understanding Common HTML Terms
+        Elements↔designators that define stuff inside a page
+            ex: different levels of headings like <h1> through <h6>, paragraphs like <p> 
+            how are elements defined?→with < > 
+        Tags↔refers to <...> that surrounds the element inside
+            ex: opening tags such as <div> 
+            ex: closing tags have a "/" 
+        Attributes↔properties used to provide more info about an element
+            when are attributes usually defined?→within the opening tag, after an element's name
+            generally include a name and value, in which they're followed by an "=" and are quoted
+            ex: an <a> element would have an href attribute and look like: 
+            <a href="http://shayhowe.com/">Shay Howe</a> 
+            https://remnote-user-data.s3.amazonaws.com/b4iB6aq8abUruVlQa_RTqHhmzHoCrHMoFNShGFJntojIAX3s2Ne0OYpJ9l_zX6acTyQGwU4uiihSqtT8KcHMx5XJzziTN-HUHDo8I71yEQ9qJ3Cj455e-_mdaJK5fqzo.png 
+            some common attributes: the id attribute (identifies an element), class attribute (specifies a source for embeddable content), href attribute (gives the hyperlink)
+Setting Up the HTML Document Structure
+    HTML documents are saved as .HTML
+    <!DOCTYPE html>→declaration that tells the browsers which version of HTML is being used 
+        is placed at the very beginning of the document
+        <html>→follows the document declaration, and signifies the beginning of the document
+            <head>→identifies top of the document, like any metadata (info about the web page)
+                this info w/i <head> won't be displayed
+                    <body>→is the visible content w/i a web page
+    <!DOCTYPE html>
+<html lang="en"> <!-- still the html tag -->
+  <head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <p>This is a web page.</p>
+  </body>
+</html> 
+    when an element is inside of another element?↔nested element 
+        ~ * self-closing elements * ~
+            <br>
+            <embed>
+            <hr>
+            <img>
+            <input>
+            <link>
+            <meta>
+            <param>
+            <source>
+            <wbr>
+Understanding Common CSS Terms
+    Selectors↔assigns which element(s) inside the HTML to target and apply style
+        ex: color, size, position
+        with selectors, you can apply them to one element or several 
+        typically targets attribute values (id or class value) or targets the type of element (<h1>, <p>)
+            selectors are usually followed by { }  p {...}
+    Properties↔applies a style, after selected
+        property falls after the selector inside { } and then a :
+        properties can be background, color, font-size, height, and width  p {
+ 	color: ...;
+ 	font-size: ...;
+ }
+    Values↔determines the behavior of that property and sits between the : and ;
+        p {
+	color: orange;
+	font-size: 16px;
+} 
+https://remnote-user-data.s3.amazonaws.com/Jq0EqsdiagyxIwomwXv56eqTocPkQl-COioxWYumFdpDKWl50sjejbCpW6ldEg_c53JxxGcY4TOQICFFzYZ9gJVAyrbeFFrdN5Ln92239krnAcaNlm5OoLltVuwWVTsn.png 
+Marking Main Area of a Webpage
+    what is the main element?→surrounds content for the page's central topic
+    https://remnote-user-data.s3.amazonaws.com/jqIWuDeaB7bhOiDK8COGXyGRizAeFbDIUkQMTpG8sQcaSwB2RBonqvgaJ9Jb32HvXNAtjloOp4zkKYTAj326d67lkrUmDgQMnFCSnlX70PKZu9vg_GLuc_f64YMstsvV.png 
+    ...
+<body>
+<header role="banner">
+    <nav role="navigation">
+        ... [ul with links] ... 
+    </nav>
+</header>
+
+<!-- the MAIN starts here inside the body -->
+<main role="main">
+    <article>
+        <h1 id="gaudi">Barcelona's Architect</h1>
+        <p>Antoni Gaudi's incredible buildings bring millions ...</p>
+        
+        ... [ rest of main page content] ...
+    </article>
+</main>
+
+<aside role="complementary">
+    <h1>Architectural Wonders of Barcelona</h1>
+    
+    ... [rest of aside] ...
+</aside>
+
+<footer role="contentinfo">
+    ... [copyright] ...
+</footer>
+</body>
+</html> 
+Working with Selectors
+    Class Selectors↔selects an element based on the element's class attribute value
+        these select a particular group of elements rather than all elements of one type and is a little more specific than class selectors
+        helps us to apply same styles to different elements by using the same class attribute value across multiple elements
+        in CSS, they're leaded with an "."
+            .awesome {...}  <div class="awesome">...</div>
+ <p class="awesome">...</p>
+    ID Selectors↔more precise than class selectors and targets only one unique element at a time
+        uses id attribute value as a selector
+        can only be used once per page
+        inside CSS, they're referred to with an "#" followed by the id attribute value
+        #shayhowe {...} <div id="shayhowe">...</div>
+Type Selectors↔target elements by their element type
+    ex: to target all division elements, <div>, we use a type selector of div  div {...}<div>...</div>
+<div>...</div> 
+Referencing CSS   #[[Referencing Css]]  #[[Linking to an Email Address]] 
+    must reference the CSS inside the HTML file
+        referenced w/i the <head> element of our HTML document
+        usually the CSS file name sits inside a <link> element w/i the <head> elemental unit
+        <head>
+	<link rel="stylesheet" href="main.css">
+	<!-- the "rel" attribute WITH the value "stylesheet" specifices their relationship -->
+</head> 
+    if our CSS file happens to be in another folder, the href attribute value needs to correlate to this path for ex: main.css file was stored in a subdirectory named stylesheets, then the href attribute value would look like "stylesheets/main.css". the / indicates that it's mobing into a subdirectory or folder 
+Using CSS Resets
+    CSS resets take every common HTML element with a predefined style and provide one unified style for all browsers.

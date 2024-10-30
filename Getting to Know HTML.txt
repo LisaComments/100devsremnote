@@ -1,0 +1,356 @@
+Semantics Overview
+    what does semantic code do?→it describes the content rather than how that content should look
+Identifying Divisions & Spans   #Div #Span
+    <div> and <span> are solely for styling purposes - no semantic meaning whatsoever
+    are just containers
+        Block vs. Inline Elements
+            block-level elements→begins on a new line, so it stacks atop of each other and takes up any available width
+                can be nested inside each other and can wrap inline elements
+            inline-level elements→don't begin on a new line, falls into the regular flow of a document so it lines up after one another
+                can be nested inside each other, but they can't wrap block-level elements
+    what do div’s and span’s allow us to do when it comes to styling?→div's and span's allows us to target styles to a contained set of content
+    <div>→block-level element used to identify large groupings of content
+    <span>→inline-level element used to identify smaller groupings of text within a block-level element
+    assigning values or names to divs and spans requires you to be mindful to refer them to the content of the element, instead of the appearance of an element 
+    ex: we have a <div> with an orange background that holds social media links, so then we could want to give this div a class value of orange. but what if we want to change that background color? we would need for the class value to be something like "social" so that it pertains to the content of the div and not its style  
+        <!-- Division -->
+<div class="social">
+  <p>I may be found on...</p>
+  <p>Additionally, I have a profile on...</p>
+</div>
+
+<!-- Span -->
+<p>Soon we'll be <span class="tooltip">writing HTML</span> with the best of them.</p> 
+        https://remnote-user-data.s3.amazonaws.com/_W2QYwxOXTTRATefGh6lUNKGuYmMG4s2PY6X4zYvBQqGt5z9iymeb71c-7orjIwWX-a2ADKXViL4SNGhcWOzxZTEFETTCsNsgIQNGK0HcLtkWFvy7M1uC_nXLWHl07Lw.png a div here contains the whole page, plus one wraps the sidebar content 
+        ...
+<body>
+<!-- Start page container -->
+<div class="container">
+     <header role="banner">
+        ...
+     </header>
+
+     <!-- Column One when CSS applied -->
+     <main role="main">
+        <article>
+           ...
+        </article>
+
+        <article>
+           ...
+        </article>
+
+        ... [more sections as desired] ...
+     </main>
+     <!-- end column one -->
+
+     <!-- Column Two when CSS applied -->
+     <div class="sidebar">
+        <aside role="complementary">
+           ...
+        </aside>
+
+        <aside role="complementary">
+           ...
+        </aside>
+
+        ... [more sections as desired] ...
+     </div>
+     <!-- end column two -->
+
+     <footer role="contentinfo">
+        ...
+     </footer>
+</div>
+<!-- end page container -->
+</body>
+</html>
+Using Text-Based Elements
+    Headings↔block-level elements that come in six rankings, <h1> thru <h6>, and establishes text hierarchy
+        should be used in the order that's relevant to content within page
+        <h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6> 
+    Paragraphs
+        <p>→usually follows the heading tag and are block-level elements
+        <p>Steve Jobs was co-founder and longtime chief executive officer at Apple. On June 12, 2005, Steve gave the commencement address at Stanford University.</p>
+
+<p>In his address, Steve urged graduates to follow their dreams and, despite any setbacks, to never give up - advice which he sincerely took to heart.</p> 
+    Bold Text with Strong - to make text bold and place a strong importance on it 
+        is an inline-level element
+        <strong>→gives strong importance to text
+        semantically, <strong> gives strong importance to text, whereas <b> just stylistically offsets text
+            <!-- Strong importance -->
+<p><strong>Caution:</strong> Falling rocks.</p>
+
+<!-- Stylistically offset -->
+<p>This recipe calls for <b>bacon</b> and <b>baconnaise</b>.</p> 
+    Italicize Text with Emphasis SEMANTICALLY
+        to italicize text, we put an emphasis on it <em>, which is an inline-level element
+        <em>→stresses emphasis on text
+        semantically, <em> stresses emphasis on text, whereas <i> conveys text in an alternative tone as if placed within ""
+            <1-- Stressed emphasis -->
+<p>I <em>love</em> Atlanta!</p>
+
+<!-- Alternative voice or tone -->
+<p>The name <i>Shay</i> means a gift.</p> 
+Building Structure
+    for a long time, divisions showed no semantic value so it was hard to determine their intentions
+    html5 introduced structurally-based elements like <header>, <nav>, <article>, <aside>, or <footer>
+        these are all block-level elements with no implied position or styles and can be used multiple times in a page
+        https://remnote-user-data.s3.amazonaws.com/Suza6rqEwT4ecw4YbdVRiUxMRy3YZn8DdGcXGrJ6e2O9xK305ZeQi6UOuYy6aOH87MQCums2gxKuY4hxNPHY8IAtBBNQQaoNQWTyCXm5ddkdaqC7u4X8tg74cpIvXBZ5.png 
+    Header   
+        <header>→used to identify top of the page, article, section, or other segment of a page
+        may include a heading, intro text, or navigation  <header>...</header>
+        <header> vs. <head> vs. <h1> through <h6> Elements
+            <header> element is a structural element that outlines the heading of a segment of a page and sits in the <body> element
+            <head> element doesn't display and is used to outline metadata, like document title and links to external files. it sits under the <html> element
+            <h1> through <h6> displays hierarchy of text inside your content
+    Navigation   #Nav
+        <nav>→identifies a section of major navigational links on a page
+        should be reserved for primary navigation sections only
+        usually link to other parts of a website
+        <nav>...</nav> 
+    Article   #Article
+        <article>→used to identify a section of independent, self-contained content that could be independently reused
+        often used to mark up blogs, newspaper articles, etc.
+        when using <article>, must determine if the content inside could be replicated elsewhere without nay confusion. 
+            if content inside the <article> element were removed, the content would still make sense
+        <article>...</article> 
+        ...
+<body>
+<header role="banner">
+     <nav role="navigation">
+        ... [ul with links] ...
+     </nav>
+</header>
+
+<main role="main">
+     <article>
+        <h1 id="gaudi">Barcelona's Architect</h1>
+
+        <p>Antoni Gaudí's incredible buildings bring millions of tourists to Barcelona each year.</p>
+
+        <p>Gaudí's non-conformity, already visible in his teenage years, coupled with his quiet but firm devotion to the church, made a unique foundation for his thoughts and ideas. His search for simplicity...is quite apparent in his work, from the <a href="#park-guell">Park Guell</a> and its incredible sculptures and mosaics, to...</p>
+
+        <h2 id="sagrada-familia" lang="es">La Sagrada Família</h2>
+
+        <p><img src="img/towers.jpg" width="75" height="100" alt="Sagrada Família Towers" /> The complicatedly named and curiously unfinished masterpiece...</p>
+
+        <h2 id="park-guell">Park Guell</h2>
+
+        ... [image and paragraphs] ...
+     </article>
+</main>
+</body>
+</html> 
+            https://remnote-user-data.s3.amazonaws.com/YnwPSuGJE0PU2Uc6WLwyb3mR1vOceb_19g9q_r5xOJqFdhUBSBMcnPMusmCinLoDP-hARo3tYJDDWlUeB8j_T085uAH9z9oy3MkzOXxNrZkC7r_GdEHkmWJYKPbPTTcq.png 
+    Section   #Section
+        <section>→used to identify a thematic grouping of content
+            generally has a heading
+        is used to break up a page and organize it
+        <section>...</section> 
+        Deciding Between <article>, <section>, or <div> Elements
+            <article> and <section> elements help with a document's structure and help to outline it
+            <div> is for grouping content for styling purposes and gives no value to the document's outline
+            if content can be replicated, use <article> 
+            if content adds to the document's outline and represents a thematic group of content, use <section> 
+    Aside   #Aside
+        <aside>→holds content, like sidebars inserts, brief explanations, anything related to the content surrounding it
+            for ex: within an <article> element, <aside> could identify content related to the author of the article
+        is a block-level element
+        HTML5 doesn't allow nesting an aside inside an address 
+        use a figure element, not aside, to mark up figures that are related to your content like charts, graphs, or an inset photo 
+        <aside>...</aside> 
+        ...
+<body>
+<header role="banner">
+     <nav role="navigation">
+        ... [ul with links] ...
+     </nav>
+</header>
+
+<main role="main">
+     <article>
+        <h1 id="gaudi">Barcelona's Architect</h1>
+
+     ... [rest of article] ...
+     </article>
+</main>
+
+<aside role="complementary">
+     <h1>Architectural Wonders of Barcelona</h1>
+
+     <p>Barcelona is home to many architectural wonders in addition to Gaudí's work. Some of them include:</p>
+     <ul>
+        <li lang="es">Arc de Triomf</li>
+        <li>The cathedral <span lang="es">(La Seu)</span></li>
+        <li lang="es">Gran Teatre del Liceu</li>
+        <li lang="es">Pavilion Mies van der Rohe</li>
+        <li lang="es">Santa Maria del Mar</li>
+     </ul>
+
+     <p><small>Credit: <a href="http://www.barcelona.de/en/barcelona-architecture-buildings.html" rel="external"><cite>Barcelona.de</cite></a>.</small></p>
+</aside>
+</body>
+</html>
+    Footer   #Footer
+        <footer>→identifies the closing or end of a page, article, section, or other segment of a page
+        usually found at the bottom of its parent element
+        you can't nest a header or another footer inside a footer. you can't nest a footer inside a header or address.
+        you can nest an article inside a footer. 
+        <footer>...</footer> 
+        ...
+<body>
+<header role="banner">
+     <nav role="navigation">
+        ... [ul with links] ...
+     </nav>
+</header>
+
+<main role="main">
+     <article>
+        <h1 id="gaudi">Barcelona's Architect</h1>
+        ... [rest of article] ...
+
+        <h2 id="sagrada-familia" lang="es">La Sagrada Família</h2>
+         ... [image and paragraph] ...
+
+        <h2 id="park-guell">Park Guell</h2>
+        ... [another image and paragraphs] ...
+     </article>
+</main>
+
+<aside role="complementary">
+     <h1>Architectural Wonders of Barcelona </h1>
+     ... [rest of aside] ...
+</aside>
+
+<footer>
+     <p><small>&copy; Copyright All About Gaudí</small></p>
+</footer>
+</body>
+</html>
+Creating Hyperlinks
+    how do you establish hyperlinks?→with <a> and then to link from one page to another, use the href attribute - href identified the destination of the link
+    <a href="http://shayhowe.com">Shay</a> 
+        Wrapping Block-Level Elements with Anchors
+            <a> is an inline-level element, so it can't wrap around other elements
+            but now with html5, anchors can wrap either block- or inline- or an other element
+    Relative & Absolute Paths
+        relative path - links to other pages of the same website, which doesn't include the domain (.com or .net) in the href attribute
+            ex: about.html
+            linking to pages inside a different directory requires you to state the directory name, a /, and then the name of the link or file
+        absolute path - when the href value must include the full domain
+            ex: google.com
+        <!-- Relative Path -->
+<a href="about.html">About</a>
+
+<!-- Absolute Path -->
+<a href="http://www.google.com/">Google</a> 
+    Linking to an Email Address
+        start with "mailto:", followed by the email address
+            ex: mailto:shayhowe.com
+        to add a subject line, you can add "subject=" after the email address. 
+            before the "subject=", you must preface it with a "?"
+            to connect one parameter to another, use the "&"
+            to denote a space in the message, use the "%20"
+            to have line breaks, use the "%0A"
+            <a href="mailto:shayhowe.com@awesome.com?subject=Reaching%20Out&body=How%20are%20you">Email Me</a> 
+    Opening Links in a New Window
+        use the target attribute with a value of _blanks 
+        the target would determine exactly where the link will show, the _blank value specifies a new window
+        <a href="http://shayhowe.com/" target="_blank">Shay Howe</a> 
+    Linking to Parts of the Same Page
+        ex: a "back to the top" link that returns you to the top of the webpage
+        first, set an id attribute on the element we want to link to. then, using the value of that id attribute within an <a> href's attribute
+            <body id="top?
+...
+	<a href="#top">Back to top</a>
+...
+</body> we place an id attribute value of top on the <body> element. now we can create an anchor element with a href attribute value of #top to link to the beginning of the <body> element. 
+WAI-ARIA
+    WAI-ARIA (Web Accessibility Initiative’s Accessible Rich Internet Applications), or ARIA for short, is a specification that declares itself “a bridging technology.”
+    describes elements that don't natively exist in HTML or don't have full browser support
+    landmark roles―identify a set of important webpage regions so screen reader users can navigate directly to them
+        role
+    examples:
+        role="banner" - includes stuff like logos, or identity of site sponsor, and site-specific search tool; usually shows up at top of page; use inside of header 
+        role="navigation" - collection of navigational links for the document 
+        role="main" - main content of document; mirrors main
+        role="complementary" - supporting section of the document designed to be complementary to main content, but remains semantic; mirrors aside element; can be added to an aside or div
+        role="contentinfo" - large region that has information about parent document; add it to your page's footer
+        ...
+<body>
+<!-- Start page container -->
+<div class="container">
+     <header role="banner">
+        ...
+        <nav role="navigation">
+           ... [ul with links] ...
+        </nav>
+     </header>
+
+     <!-- Column One when CSS applied -->
+     <main role="main">
+        <article>
+           ...
+        </article>
+
+        <article>
+           ...
+        </article>
+
+        ... [more sections as desired] ...
+     </main>
+     <!-- end column one -->
+
+     <!-- Column Two when CSS applied -->
+     <div class="sidebar">
+        <aside role="complementary">
+           ...
+        </aside>
+
+        <aside role="complementary">
+           ...
+        </aside>
+
+        ... [more sections as desired] ...
+     </div>
+     <!-- end column two -->
+
+     <footer role="contentinfo">
+        ...
+     </footer>
+</div>
+<!-- end page container -->
+</body>
+</html>
+        https://remnote-user-data.s3.amazonaws.com/D78T82zMsllJZMkEjEPoSkNqihiEyer4chHypfIZ4C7EmLPE3gA_YGhVbeq24TjwYFzzTOf0l3B1elFZAoYc39r8Atlsx_fj2lp_NDdwwgQ5SHzK9Y43O4b9AEqg7U5s.png 
+    Adding Title Attribute to Elements
+        title attribute ≠ <title> element 
+        ...
+<ul title="Table of Contents">
+     <li><a href="#gaudi" title="Learn about Antoni Gaudí">Barcelona's Architect</a></li>
+     <li><a href="#sagrada-familia" lang="es">La Sagrada Família</a></li>
+     <li><a href="#park-guell">Park Guell</a></li>
+</ul>
+...
+</body>
+</html>
+Leon's Class 2 Notes
+    for accessibility - even if audience cannot read or see, they can hear the most important pieces of information 
+        <em> strong emphasis
+        <strong> Strong Importance
+    containing elements
+        <div>
+        <section> - contains like elements together
+        <article> - contain things that're meant to be shared (i.e. blog posts, articles)
+        <aside> - extra content (i.e. ads)
+        <header> - grouping content at beginning of document
+        <footer> - grouping content at end of document
+    
+

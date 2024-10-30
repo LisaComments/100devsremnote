@@ -1,0 +1,213 @@
+Positioning with Floats   #Floats
+    Floats and Positioning
+        what is a float?→float property takes an element, removes it from regular flow of the page, and positions left or right inside its parent element
+            what happens to elements outside all other elements float around it
+        for ex: text would wrap around an image that's floated to the left
+        what values do floats accept?→it accepts left or right valuesimg {
+ 	float: left
+ } 
+    Float Practice
+        here we have a simple webpage <header>...</header>
+ <section>...</section>
+ <aside>...</aside>
+ <footer>...</footer> 
+        https://remnote-user-data.s3.amazonaws.com/LPY4LS1nmA5weO6-hNIdzEb9SruhIlm5b0MfwY6B0qQ_llcZDbzys1ee6GKrTRT9aj40U_XTeAC7SZ32B-ZOJQz7GczZZXx5VW9bqGIcUdttI53Nim3k_EEqSu6A1Bf8.png 
+        here, all of the elements, esp. <section> and <aside> will be sit on top of each other like the block-level elements they are. but, we want the <section> and <aside> to sit next to each other. so we can position them using the float property:section {
+	float: left;
+}
+
+aside {
+	float: right;
+} 
+        what happens when an element is floated inside of a parent element?→it will float all the way to the edge inside the parent element
+        what happens to a floated element if there's no parent element?→the element will float all the way to the edge of the page 
+        what essentially occurs when you float an element?→you take it out of the normal flow of the HTML document
+        what happens to the width of an element when you float it?→the width of that element will take on the width of the content inside of it 
+        how can you correct undesirable widths of floated elements?→creating a fixed property value for that element 
+        how can you prevent floated elements from touching each other?→by adding a margin property to make space between elements 
+        we'll add a margin and width to each column to shape out our outcome: section {
+ 	float: left;
+ 	margin: 0 1.5%;
+ 	width: 63%;
+ }
+ 
+ aside {
+ 	float: right;
+ 	margin: 0 1.5%;
+ 	width: 30%;
+ } https://remnote-user-data.s3.amazonaws.com/mcqUk6Z25ApIZuNaiC9_aRW86s061kgGqx_k7pZfBZzjviL7Vc-zvEpmVOsrYlahQ4jY05rQJ6ieRyfifdQxMiQI41PxNuToBOPt7ZfjKr6sUeuZD1wfVxEuBA6DUqWm.png 
+        Floats May Change an Element's Display Value
+            what happens to the display value when you float an element?→it may change the element's overall display value 
+            what happens to an inline-level element when it's floated?
+                its display value may be changed to block - esp. if it's not already a block-level element 
+                take on any height or width values imposed on it
+                for ex: an element with a display value of inline, like the <span> Inline-level Element, ignores any height and width property values (if this <span> element was sitting by itself inside the code block). but, if that inline-level element was floated, its display value will be changed to block and accept those height and width values.
+            next ex, if we decide to have multiple columns, we must change our approach from the previous css code block we have. if we have a row of three columns, drop our <aside> element and use three <section> elements and it could look like this: <header>...</header>
+ <section>...</section>
+ <section>...</section>
+ <section>...</section>
+ <footer>..</footer> 
+            so now we want to position these three <section> elements into a 3-column row. we need to adjust the width of the <section> elements bc we want these <section> elements to sit next to each other:section {
+	float: left;
+	margin: 0 1.5%;
+	width: 30%;
+} https://remnote-user-data.s3.amazonaws.com/xszPMnV4MVCFisXuqY3CB4fpG-sOSTMeQr0Ud0NgffLDqCjWgp7cRVh9wWvqSRed9AaWT3h0tDP2DnSYM2gQIVKI-KZEN7Bosrtd_tTaXXmAjh8QO7fCnXgpXRqwTfeQ.png 
+    Clearing & Containing Floats   #Clear #Contain #Containg
+        what was the float property originally designed for?→to allow content to wrap around images 
+        what is a pitfall of using float for positioning content?→some styles won't be applied onto an element that's involved with a floated element 
+        what's another pitfall for floating an element?→unwanted content may want to wrap around a floated element 
+        in our first float example, had we not applied widths for both <section> and <aside>, then the <footer> would've wrapped in between the elements above it https://remnote-user-data.s3.amazonaws.com/dXMq2sZq7fdp7U-hHKuaptRoaiFEnTFxAXCBiig66Hql7aWy3rPaEv_tfW6anM7Rak-Nyw3q8Vtjg80GeBGsYX1Iga31Rh7v3nZv14Bc8_6Wf4CiJ33LeOElN2rsgUaH.png 
+        how do you prevent content from wrapping around floated elements?→clearing or containing those floats to return everything to a normal flow 
+        Clearing Floats
+            how do you clear floats?→by using the clear property
+            what kind of values does the clear property accept?→left, right, both 
+            for ex:div {
+	clear: left;
+} 
+            what does the left value do in the clear property?→clears left floats
+            what does the right value do in the clear property?→clears right floats
+            what does the both value do in the clear property?→will clear both left and right floats and usually the most ideal value 
+            in the previous example, if we use the clear property with the value both for the <footer> element, then we can clear that float:footer {
+ 	clear: both;
+ }
+ 
+ //footer is the element that appears AFTER the floated elements, which is the EXACT element that needs to be cleared https://remnote-user-data.s3.amazonaws.com/mchHcmcMwmpKwRfRUhNxUWEJOB6wB8G1Q3wl1vX60bg2_hV9fmUKAYWFGvvMabzsSjQhuyxMN4NSMb54JPMXvEb8kl-vKD1_Vi_6W5ZwJ85brXJEkiXM8ZYwfb4XCiYl.png 
+            when should you apply clear to an element?→it should be applied to the element appearing after the floated elements
+        Containing Floats   #Clearfix
+            what is an advantage to containing floats compared to clearing floats?→allows all of our styles to be applied properly 
+            what is essential to containing floats?→the floated element must sit inside of a parent element
+            what happens to the document's flow when you have a container?→the flow outside of the container will be completely normal 
+            the CSS of a parent element:  .group:before,
+ .group:after {
+ 	content: ""
+ 	display: table;
+ }
+ .group: after {
+ 	clear: both;
+ }
+ .group {
+ 	clear: both;
+ 	*zoom: 1;
+ }
+ /* our parent element in here is represented as a .group */
+ this code is clearing floated elements inside the element with the class group, which returns the page flow back to normal. Pseudo-elements, :after and :before, are generated above and under the element with the class of .group. Elements with no content sitting inside are displayed as table-level elements (like block elements).  
+            the elements after the element with the class of .group is clearing the floats inside the element with the class .group - like clear from before
+            now we could wrap <section> and <aside> from our older code from before with a parent element. the parent element will contain the floats inside itself:<header>...</header>
+<div class="group"> <!--we're making this THE parent element to hold our stuff -->
+	<section>...</section>
+	<aside>...</aside>
+</div>
+<footer>...</footer>  .group:before,
+ .group:after {
+ 	content: "";
+ 	display: table;
+ }
+ .group:after {
+ 	clear: both;
+ }
+ .group {
+ 	clear: both;
+ 	*zoom: 1; 
+ }
+ section {
+ 	float: left;
+ 	margin: 0 1.5%;
+ 	width: 63%;
+ }
+ aside {
+ 	float: right;
+ 	margin: 0 1.5%;
+ 	width: 30%;
+ } https://remnote-user-data.s3.amazonaws.com/8YcT1FhLTfFklj0YWm2xs63iPldxQIjXI7MAAqWfoctk-g-YJWkddQ9UJYw4OI-GcnkrwNtqzueyRGdkgPMFyGomDgSAePl0kn9FP8TjzfEBro7y9afdaSq-Tza-x82C.png 
+            what is clearfix?→technique for containing elements
+            what 2 things should you keep in mind as you float elements?  
+                how they affect the flow of a page
+                make sure the flow of a page is reset by either clearing or containing the floats
+Positioning with Inline-Block   #Inline-block
+    what does display: inline-block do?→display elements within a line while allowing them to accept all box model properties (height, width, padding, border, margin) 
+    why is the inline-block method helpful?
+        helpful for laying out pages 
+        for placing elements next to each another inside a line
+    Inline-Block in Practice
+        <header>...</header>
+<section>...</section>
+<section>...</section>
+<section>...</section>
+<footer>...</footer>
+ instead of floating the 3 <section> elements, we'll change their display values to inline-block values and leave the margin and width properties alone section {
+	display: inline-block;
+	margin: 0 1.5%;
+	width: 30%;
+}
+  this code alone won't work because the last <section> element is pushed to a new row. this is because they take on the extra spacing from the margin and also width. if you want to fit the last <section> in the same row, then you could try to remove the extra margin spacinghttps://remnote-user-data.s3.amazonaws.com/zBLpLglpQjDU5WC1WDHUt3kMd6UtUTEddkbLL6gcsRAtK5aB-CHzIF6EW3okvRKjFLafTZPlQlEJ_n1ShbLEoEM6LLsdQ-v7YmrqnaVQK-NeOGyVDZ7ocJQFQhTET3uK.png 
+    Removing Spaces Between Inline-Block Elements
+        ex: we could put each new <section> element's opening tag on the same line as the previous <section> element's closing tag. we could end and start elements on the same line: <header>...</header>
+ <section>
+ 	...
+ </section><section>
+ 	...
+ </section><section>
+ 	...
+ </section>
+ <footer>...</footer> doing it this way ensures that the space between inline-block elements won't exist. so, the space won't appear when you load your page https://remnote-user-data.s3.amazonaws.com/AaACMwlhYovwvfaptkjwGEjNhXdYSyzVi5UuC8LmWPTeo7vnNZCTESQr-dCjziXh51xfNPmwPq7vZsrj5RO7jKLBbhXjyE5_ZA-aliZC4DysVq636vMMFbUYuezROy-6.png 
+        what is the first way you can remove white space between inline-block elements?→starting and ending elements on the same line as each other
+        ex: here we can insert HTML comments between inline-block elements:<header>...</header>
+<section>
+	...
+</section><!--
+--><section>
+	...
+</section><!--
+--><section>
+	...
+</section>
+<footer>...</footer>  
+        what is the second way to remove white space between inline-block elements?→opening an HTML comment right after a closing inline-block element tag, then closing that comment right before the next inline-block element 
+Uniquely Positioning Elements  #Uniquely-positioning-elements
+    when would we want to use the position property?→when we want to precisely position elements, and floats and inline-block won't work
+    what is the position property?→identifies how the element is positioned on a page and whether or not it'll show within the normal flow of a document
+    what are the box offset properties for the position property?→top, right, bottom, and left 
+    what do the box offset properties for position property do?→identifies exactly where an element will be positioned by moving elements in a bunch of different directions 
+    what is the default value of the position property?→static 
+    what does the static value of the position element do?
+        it exists in a normal flow of a document
+        will not accept any box offset properties 
+    what values commonly overwrite the static value for the position property?→relative or absolute 
+    Relative Positioning   #Relative
+        what does position: relative do?
+            let elements appear inside the normal flow of a page
+            leaves space for an element intended while not allowing other stuff to flow around it
+        how can you modify an element's display position?→with box offset properties 
+        ex: <div>...</div>
+<div class="offset">..</div>
+<div>...</div>  div {
+	height: 100px;
+	width: 100px;
+}
+.offset {
+	left: 20px;
+	position: relative;
+	top: 20px;
+}  https://remnote-user-data.s3.amazonaws.com/kcSZVz1Q1cFqDK25YEFiKJ_VRjauN5zH0LTm0Tb6jTtggoapupTYWxbYirEpRblwnw6vOu0iyXAGCUoS16-rerXL98SA6mkokhLvYZBWO_IFbjQgS6MT-s4eyYxwsfo1.png this <div> with the class .offset has a relative position value and 2 offset box properties. this will keep the original position of the element, and other elements aren't allowed to move into this space. the box offset properties also reposition the element, pushing it 20px from the left and 20px from the top of its original location
+            with a left property with a value of 20px, the element will be pushed to the right from the left by 20px. with a top property value of 20px, then it'll push the element towards the bottom from that top, 20px. 
+        what do box offset properties do with relatively positioned elements?→identify where an element will be moved from its original position 
+        what happens when we position an element with box offset properties on a page?→the element overlaps the element below it instead of moving that element down like margin and padding properties would
+    Absolute Positioning   #Absolute
+        what 2 things does the absolute value for the position property do?
+            the element won't show up in normal flow
+            the original white space won't be preserved 
+        how do absolutely positioned elements move?―they move in relation to their closest relatively positioned parent elements, or otherwise in relation to the <body> element
+        <section>
+	<div class="offset">...</div>
+</section>  section {
+	position: relative;
+}
+div {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}  https://remnote-user-data.s3.amazonaws.com/no101_AjvSfi7b93kMM64fVjm9MNaWIke9TmgS0JmZ4JpjSJgI0PTpLVWaQ95P2zLbtE7b_zX-1EoNfrYPY6Cq1BbGoMxPs8OMR1Crmb80zjVacD6U0QpVr8uVaFVEbK.png in here, because the <section> element is the closest relatively-positioned element to the <div> element, the <div> element (which has absolute position) will be positioned in relation to the <section> element.
+        what do box offset properties do with relatively positioned elements?→they identify which direction an element would be moved in relation to its original position
+        what do box offset properties do with absolutely positioned elements?→they identify which direction an element will be move in relation to its closest relatively-positioned parent element 
+
+

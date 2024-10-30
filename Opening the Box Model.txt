@@ -1,0 +1,162 @@
+How Are Elements Displayed?→As block-level or inline-level elements 
+    what are block-level elements?→block-level elements occupy any available width, no matter the content, and begins on a new line
+    what kind of elements are usually block-level?→generally headings and structural elements
+    what are inline-level elements?→inline-level elements take up the space inside the width they're required and on the same line - one after another
+    what are inline-level elements generally used for?→for smaller pieces of content
+    Display   #Inline-block #Block #Inline
+        how are elements displayed?→elements are shown using the display property
+        what are some display values?→some values include: inline, inline-block, none 
+        we can change an element's display property value by selecting within CSS and declaring new property value
+        p {
+	display: block;
+} value of block→will make that element a block-level element
+        p
+ {
+	display: inline;
+} value of inline→will make that element an "inline-level" element
+        inline-block value→allows an element to behave as a block-level element. the element will be shown in line with other elements, so it won't begin on a new line by default.  p {
+ 	display: inline-block;
+ } 
+        div {
+	display: none;
+} value of none→will hide an element and render the page as if that element doesn't exist 
+What is the Box Model?↔every element is a rectangular box
+Working with the Box Model
+    box is mainly defined by width and height of element, which is then determined by display property - by contents of that element or height and width properties
+    padding and border→expand dimensions of the box outward from its width and height
+    margin→follows the border
+    each box model corresponds to a CSS property: width, height, padding, border, margin 
+    div {
+	border: 6px solid #949599;
+	height: 100px;
+	margin: 20px;
+	padding: 20px;
+	width: 400px;
+} 
+    total width of an element can be calculated using this formula = margin-right + border-right + padding-right + width + padding-left + border-left + margin-left
+    total height of an element can be calculated using = margin-top + border-top + padding-top + height + padding-bottom + border-bottom + margin-bottom
+    https://remnote-user-data.s3.amazonaws.com/dFAY9hG-uyGb4DWwgnmA9QgeamVnLvc-7T4-Bk3XbHbgbK1jw7gPUg4DjKOC6JbNvFlr7AV_cme58izsFioqQ1Fa9JTi67aWWCCWeqs2g6IrkuP59mJytisFbvhqobve.png 
+    using the formulas given, let's calculate the height and width in our example: 
+        width = 20px + 6px + 20px + 400px + 20px + 6px + 20px = 494px
+        height = 20px + 6px + 20px + 100px + 20px + 6px + 20px = 192px
+    Width & Height   #Width #Height
+        browsers may render elements
+        specific elements sizes need to be defined by their properties
+        Width
+            block-level elements have a default of 100% width, taking up all horizontal space
+            inline elements and inline-block elements expand and shrink horizontally to accommodate their inside content 
+            inline-level elements can't have a fixed size
+            height and width properties are only applicable to block-level elements
+            div {
+	width: 400px;
+} to set a specific width for a non-inline element
+        Height
+            default height of an element is determined by its inside content
+            that element will expand or shrink vertically to accomodate content
+            div {
+	height: 100px;
+} to set height for a non-line element
+    Margin & Padding   #Margin #Padding
+        browsers may apply default margins and padding to an element to help with clarity
+        Margin   #Margin
+            margin property→lets us set the amount of space that surrounds an element
+            margins sits outside of any border and are clear
+            div {
+	margin: 20px;
+} 
+            margin properties, top and bottom, are only accepted by block-level and inline-block elements
+        Padding→provides spacing inside an element   #Padding
+            padding property sits inside the element's border, if the element has a border
+            div {
+	padding: 20px;
+} 
+            unlike margin property, works on inline-level elements as well
+            margins only work horizontally—left and right—on inline-level elements 
+            padding works on all four sides of inline-level elements; however, the vertical padding—the top and bottom—may bleed into the lines above and below an element 
+        Margin & Padding Declarations
+            we can use shorthand for declaring properties
+            with margins, we can use the same value for all 4 sides of an element:  div {
+ 	margin: 20px;
+ }
+            or, to set one value for top and bottom, top and bottom come first. then for left and right, left and right come last. below, we're placing margins of 10px on the top and bottom of <div> and margins of 20px on left and right div {
+	margin: 10px 20px;
+	/* "10px" is for top and bottom while "20px" is for left and right */
+} to put unique values for all 4 sides of an element, we go in the clockwise order of: top, right, bottom, left. like below: div {
+ 	margin: 10px 20px 0px 15px;
+ } 
+            an example of longhand is to list out the property name  div {
+ 	margin-top: 10px;
+ 	padding-left: 6px;
+ }
+            margin and padding properties are transparent and don't accept colors 
+    Borders
+        borders sit between padding and margin 
+        border property requires: width, style, and color 
+        longhand of these properties could be: border-width, border-style, border-color
+            longhand be useful for overwriting
+        borders can have different appearances like solid, double, dashed, dotted, none 
+        div {
+	border: 6px solid #949599;
+} for 6-pixel, solid, gray border that wraps the whole <div> 
+        Individual Border Sides
+            borders can be placed on one side of an element at a time if you want
+            for ex: border-top, border-right, border-bottom, border-left 
+            values for these properties are the same as those of the border property alone 
+            for ex, if we want to make a border appear only one the bottom of an element:  div {
+ 	border-bottom: 6px solid #949599;
+ }
+        Border Radius
+            border-radius→allows to round the corners of an element
+            accepts length units, including % and px, that identify the radius for which corners to round
+            single value for border radius→rounds all four corners of an element equally
+            two values for border radius→rounds top-left/bottom-right and top-right/bottom-left in this order
+            four values  of border radius→will round top-left, top-right, bottom-right, bottom-left in this order
+            div {
+	border-radius: 5px;
+}
+/* remember when putting in values, they are ordered in clockwise values */ 
+            border-radius can be written in longhand
+                begins with border-(vertical location like top or bottom)-(horizontal location like left or right)-radius
+                div {
+	border-top-right-radius: 5px;
+} 
+    Box Sizing    #Box-sizing
+        to get full width of element, we add→width, padding, and border 
+        CSS3 introduced box-sizing property→allows us to change exactly how the box model works and how its element's size is calculated
+            accepts 3 primary values: content-box, padding-box, border-box 
+        Content Box 
+            if we don't use the box-sizing property, this will be the default value for all elements
+            content-box value is the default value
+            div {
+	-webkit-box-sizing: content-box;
+	-mox-box-sizing: content-box;
+	box-sizing: content-box;
+} 
+        Padding Box 
+            padding-box value→alters box model by including any padding property values inside the width and height of an element
+            as padding values increase, the content size inside an element shrinks a lot
+            for ex: an element has a width of 400px and a padding of 20px around every side, the actual width will still be 400px
+            if we add a border or margin, those values will be added to the width or border properties to calculate for full box size 
+                ex: we add a border of 10px and a padding of 20px around every side of the element with a width of 400px, then the full width will be 420px
+            div {
+	box-sizing: padding-box;
+} 
+            the padding-box value shouldn't be used with the box-sizing property anymore❗️
+        Border Box 
+            border-box→alters the box model so that any border or padding property values are included inside the width and height 
+            ex: if an element has a width of 400px, padding of 20px, and a border of 10px, the real width of will remain 400px
+            if we add a margin, those values will need to be added to calculate the full box size
+            div {
+	box-sizing: border-box;
+} 
+            https://remnote-user-data.s3.amazonaws.com/O4dQdX-XHvHMgtAKHMG6fPml7uXamYp0rWNSUxuj2--YfDS9x2u3p0axioBJG6cjVwY2L_uYAf6VlJSIZ1hXE9Ac3kchOVcr4wAvdYIF3c3tWePfvbiYtFNcTturMDCw.png 
+        Picking a Box Size
+            using the box-sizing value makes calculating the math simpler 
+                ex: we want an element to be 400px, it'll remain 400px wide no matter what padding or border values we add to it
+            we can also mix length values
+            ex: we want our box to be 40% wide, add a padding of 20px, and a border of 10px. the actual width of our box will still be 40%
+            however, this value is not always supported in all browsers
+        The Universal Selector
+            * is the universal selector - selects all elements
+https://remnote-user-data.s3.amazonaws.com/w6U2CRRet22tvxvsGgCbFlJHhyGYO9vVno4R0gyjuRodO6JmQPypbQPnx7FHyq_90q1zhgbRcg33K6AOYcHrO7qzt42D918qg7RxZNOotqiG9N3Y_tcJV091Tg2hRgoI.png 
+https://remnote-user-data.s3.amazonaws.com/4LVPGd7bM1d4pBv-qjz5ldVuEKvrUGBOCz1DYvvQNFJew0QaU2iYHXXm4fB9RuW2_Scmj3u8jI9o8xgJP5fQpONi60ekXNCweQyVvctmFB0kFlCTLgwqyoAjp9OYYU7o.png 

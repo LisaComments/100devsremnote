@@ -1,0 +1,107 @@
+Adding Color to Text
+    How would we set the color of text?→using the color property
+        What kind of values does the color property possess?→rgb, hex, HSL, keywords
+        example of changing color of all text within HTM: document: 
+        html {
+    color: #555;
+} 
+Changing Font Properties
+    CSS has two main property categories: font-based and text-based
+    Font Family
+        font-family property is for declaring what kind of font you’re using
+        it includes fallback or substitute font
+        the first declared font is the primary font shown
+        alternative fonts are written from left to right in this property
+        font names with two or more words should be written within commas
+        the last font should be a system default font, like serif or sans-serif
+        body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+    Font Size
+        font-size property allows you to set the size of the text with pixels, percentages, em, or points
+        body {
+  font-size: 14px;
+}
+    Font Style
+        font-style can bell prevent text from becoming italic or keep it italicized
+        it accepts four keyword values: normal, italic, oblique, inherit 
+        .special {
+  font-style: italic;
+} 
+    Font Variant
+        You might want your font to be in all caps at times 
+        you’d use font-variant property 
+        it accepts three values: normal, small caps, inherit 
+        .firm {
+  font-variant: small-caps;
+}
+    Font Weight
+        font-weight can bolden a font
+        it accepts keyword or numeric values
+        keyword values are: normal, bold, bolder, lighter, inherit 
+        instead of using bolder or lighter, it’s recommended to use numeric values for more control
+        .daring {
+  font-weight: bold;
+}
+
+        the numeric values are: 100-900 and scale up from thinnest to thickest
+        .daring {
+  font-weight: 600;
+}
+
+    Typeface Weight
+        using a weight not available for the typeface in use will cause the font to default to its closest value
+        example: Times New Roman typeface comes in two weights: normal, 400 and bold, or 700. its thickest weight is 700, so if you try to use 900 it will default to 700
+        Line Height
+            line-height is the difference between two lines and accepts all general length values 
+            ⭐️ the best practice to set line-height is to around 1 1/2 times * our font-size property. This can be quickly set by making line-height 150% or 1.5
+            pixels give you more control
+            body {
+  line-height: 22px;
+}
+
+            line-height can vertically center a single line of text like so 
+            .btn {
+  height: 22px;
+  line-height: 22px;
+}
+
+        Shorthand Font Properties
+            all earlier font properties can be short handed into: font 
+            The order of these property values should be as follows, from left to right: font-style, font-variant, font-weight, font-size, line-height, and font-family 
+            the property values are listed from left to right without commas (except for font-family)
+            A forward slash, /, separator is needed between the font-size and line-height property values
+            all values are optional except for font-size and font-family 
+            html {
+  font: italic small-caps bold 14px/22px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+        CSS Pseudo-Classes
+            pseudo-classes are keywords that may be added to the end of a selector to style an element when it’s in a unique state
+ Applying Text Properties  
+    Text Align
+        text-align property aligns text
+        as five values: left, right, center, justify, inherit 
+        p {
+  text-align: center;
+}
+
+            
+    Text Decoration
+        text-decoration spruces up text
+        its keyword values are none, underline, over line, line-through, inherit  
+        can have many values, as long as they’re separated by commas
+        .note {
+  text-decoration: underline;
+}
+    Text Indent
+        text-indent property is used for indenting the first line of text inside an element
+        common length values are pixels, points, percentages, etc
+        positive values indent inward, while negative values indent backward 
+        p {
+    text-indent: 20px;
+}
+    Text Shadow
+        text-shadow property lets us add a shadow or multiple shadows to text
+        takes on 4 values: first 3 values are lengths and the last value is a color
+        
+

@@ -1,0 +1,270 @@
+The Cascade
+    what is a stylesheet?→text that has one or more rules that determine - through properties and values - how a webpage looks 
+    why does css involve the word "cascading"?→all styles cascade from the top of a stylesheet to the bottom, allowing properties to be overwritten 
+        ex: we want to select all <p> elements and set their background color to orange and font size to 24 px. then, at the bottom of our stylesheet, we select all paragraph elements again and set them to green.  p {
+ 	background: orange;
+ 	font-size: 24px;
+ }
+ p {
+ 	background: green;
+ } 
+            because the green background comes after the orange background, it'll take precedence 
+            between two properties for one element, which property takes precedence - top or bottom?→the property written at the bottom 
+    Cascading Properties
+        overwriting also works inside or within selectors
+        ex: we want all <p> elements to be orange background, but then we add a new value under it and set the background color to green  p {
+ 	background: orange;
+ 	background: green;
+ } 
+        because the green background color appears after the orange background property, it will overrule the previous property value 
+    what is a rule?→a chunk of CSS code that has a selector and declaration block
+    what's a selector?→a keyword to reference an element that we want to apply a style to
+    what's a declaration?→a line of code made up of a selector and its value(s)
+    what's a declaration block?→as block of code made up of one or more property-value pairs
+    how to write a style rule: 
+    selector {
+    property: value;
+    }
+    https://remnote-user-data.s3.amazonaws.com/YBq0wdWPbsVWcTTMMiw1jJau_-hFFhA4Jx4jC-92MlciUV14Tf3g2gRYaIPPJADjTLDtEVwjB7JL2filIi_9OPxxwqZc01OlhpVFM8q-nPdS3ffJy7EdndZusriuqViD.png 
+CSS Comments
+    /* this is a css comment */
+Understanding Inheritance
+    lower elements inherit from their ancestors 
+    elements can inherit properties like colors and font-sizes
+    example of inheriting in a simple code: 
+    ...
+<body>
+<div>
+    <h1>The Ephemeral Blue Flax</h1>
+    <img src="img/blueflax.jpg" width="300" height="175" alt="Blue Flax (Linum lewisii)" />
+    <p>I am continually <em>amazed</em> at the beautiful, delicate Blue Flax that somehow took hold in my garden. They are awash in color every morning, yet not a single flower remains by the afternoon. They are the very definition of ephemeral.</p>
+    <p><small>&copy; Blue Flax Society.</small></p>
+    </div>
+    </body>
+    </html>
+        all the content elements descend from the body element and in this case, a div wraps around everything inside that. furthermore, the em and small elements are contained inside p. https://remnote-user-data.s3.amazonaws.com/uvCLNSY-xGgf8B4lKj-a4sojljh5-Jlfq1gkb1SYmVWCtdofHdPnGlS0jVrB1c_QUDOQNAzKGgE_yNW0J3xxCtox1-cbowGSlx2ZPVMfhC3Me3VdclyVCl2X-wj9XtOj.png 
+Calculating Specificity
+    what happens when there are conflicting styles?→browser takes specificity, order, importance into account 
+    what's the law of specificity?→the more specific the selector, the stronger the rule
+    https://remnote-user-data.s3.amazonaws.com/T1o_fd3tQEDAwI9Rr-gS-3ba1xcaicEYtY-1ivV9NIR-C7rnKmifW88kCmkzCy0NCvz63cO8ITUgGyuJE6O7Lcdct9G34G3BRAY7G1x6O60kYklDnFtF1M-4ZPJ39ygH.png 
+    what kind of selectors have specificity weights?
+        type
+        class
+        ID selectors
+    what is ID selector's specificity weight?→1-0-0
+    what is class selector's specificity weight?→0-1-0
+    what is type selector's specificity weight?→0-0-1 
+    specificity points have 3 columns:
+        first column: counts ID selectors 
+        second column: counts class selectors 
+        third column: counts type selectors 
+    https://remnote-user-data.s3.amazonaws.com/sWmM9RgtNLv2hpyZYJQuWViA3xpmBNdax7jag5NdPTGad-4gju_ceXprNmiX27YdEzP7Prf3YcP5itNSkDy1Wu3FgSVoc2aN9GNJWf6_o_52Nu3UoKSUrN3l9fy574dk.png 
+    ID selectors have the highest specificity weight, whereas class selector has higher weight than the type selector
+    the higher the specificity weight, the superior it is during styling conflicts
+    ex: if a <p> element is using a type selector in one place and an ID selector in another, the ID selector will override no matter where it exists within the stylesheet 
+<p id="food">...</p>  # food { /* this is the ID selector with a # */
+ 	background: green;
+ }
+ /* this ID selector will OVERRIDE any selectors for <p> bc it weighs more */
+ p { /* This is the type selector bc it selects the TYPE of element */
+ 	background: orange;
+ } 
+Combining Selectors
+    combining selectors lets us be more specific about which element(s) we want to select
+        ex: we want to select all <p> elements within an element with a class attribute value of hotdog and set their background to brown. <div class="hotdog">
+	<p>...</p>
+	<p>...</p>
+	<p class="mustard">...</p>
+</div>  .hotdog p{
+ 	background: brown;
+ }
+ .hotdog p.mustard {
+ 	background: yellow;
+ } 
+    however, if those <p> happen to have a class attribute value of mustard, then we want to set its background color to yellow 
+        .hotdog p is made up of: a class selector and a type selector. the new class selector mustard falls all the way right, so it is the key selector, and all of the selectors before it are now pre-qualifiers 
+        reading the combined selector from right to left, targets paragraphs with a class value of mustard that live inside an element with the class attribute value of hotdog (nested class)
+        how do we read selectors when we combine them?→from right to left 
+            key selector→the selector farthest right before the { and identifies which element the style is applied to
+            prequalifier→any selector to the left of the key selector
+        rules that appear later take precedence 
+        with two or more rules of equal specificity, the one that appears last wins 
+        what is parent > child?→to select an element that's the direct descendant of another element
+            https://remnote-user-data.s3.amazonaws.com/kxoJ-qyILymwP6BIC-ENbqOdmubJQ8m02qyndUsbEC6gnjZdqQFatbWegGt6weJg5t6Sm8rRtz41hdu1JbfcyWF9F3_QHjaaSSfm7lNhwAapDi-EKiQF28pi-KMHN5Ti.png 
+        what is parent child in CSS?→to select an element that's inside another element without it actually being a direct descendent
+            https://remnote-user-data.s3.amazonaws.com/1TkCLRK1PpzfMtDaOM1zaJiAAXAI20kDLFz6JjPRqoSiUQMp3u4x7ZNQuz2xTSBgpRLTVRj45ZRU7ukV78EcMhjlLffbKsExl6UhgRanBfxU65u75tblHrGq6_OfOkJV.png 
+        what is previous sibling + next sibling?→to select an element that's the next sibling use
+            https://remnote-user-data.s3.amazonaws.com/XDXKgkftoQu_t83S8rolodeFx89CZbCa9OS0b3knEpRODJBeJS55UUUGJeErWxWD6m0KMavb89c0DZX8M-e_ctwKWKXx8bajYxIVSHKPFZfjitAlv7Z7HrOpDuMcYI_n.png 
+    Specificity Within Combined Selectors
+        when selectors are combined, their weights change
+        how do you calculate combined selectors’ weights?→by counting each diff type of selector within that combined selector
+            ex: the first selector, .hotdog p, had both a class selector and a type selector. the combined point value of these would be 0-1-0 + 0-0-1 = 0-1-1
+        ex: the second selector, .hotdog p.mustard, had two class selectors and one type selector. therefore, its combined point value is 0-2-1. the 0 is for zero ID selectors, 2 in second column is for two class selectors, and 1 in the last column is for one type selector.
+        comparing both previous selectors, the two class selectors has a higher specificity value, therefore it takes precedence. changing the order or placement of these combined selectors would not change this overwriting rule  .hotdog p.mustard {
+ 	background: yellow;
+ }
+ .hotdog p {
+ 	background: brown;
+ } 
+    generally, the higher the specificity weights rise, the more likely our cascade is to break
+Layering Styles with Multiple Classes
+    what are two ways you can keep specificity weights low?
+        we can share styles from element to element 
+        layer different styles by using multiples classes
+    can HTML elements have more than one class attribute?→yes 
+    ex: we want all of our buttons to have one font size of 16 pixels, but we want the background color of our buttons to vary depending on where the buttons are used  <a class="btn btn-danger">...</a>
+ <a class="btn btn-success">...</a>
+    .btn {
+	font-size: 16px;
+}
+.btn-danger {
+	background: red;
+}
+.btn-success {
+	background: green;
+}
+/*these colors of certain buttons will change depending on whether it'll be a danger or success button, but all of the will have 16px font size */ 
+Common CSS Property Values
+    Inherit
+        when would you use an inherit value?→when you want to explicitly specify that the value of a property be the same as that of the parent's element 
+            example: you have a couple of paragraphs inside article element which has a border setting. borders aren't normally inherited, so you would use the rule p { border: inherit; } 
+    Colors
+        where are all color values inside CSS defined?→on a sRGB (standard Red, Green, Blue) color space. this means that colors are all mixed in different levels of red, green, and blue.
+        what are 4 main ways to represent sRGB colors within CSS?→keywords, hexadecimal notation, RGB, and HSL values
+        https://remnote-user-data.s3.amazonaws.com/e8VsKMtwYrOC7sg7lkr-97dCXAwU5LAKWtp6zLtK-b-a5PWyrX8fJPcia9mE1WNNrVAUhg6XrHZgXYdo69_pOM4XX0hlmR1HnERAOg3MbiL9k1Np7-hiibhp5YsaIBiR.png 
+    Keyword Colors
+        keyword color value names (red, green, blue, etc) map a given color
+            complete list of keyword colors can be found here 
+            ex: we want to apply a maroon background to any element with the task class attribute value and a yellow background to any element with the count class attribute value  .task {
+ 	background: maroon;
+ }
+ .count {
+ 	background: yellow;
+ }
+    Hexadecimal Colors
+        what are hexadecimal color values?→values with a #, followed by a 3 or 6 character figure
+            these characters are made up of numbers 0-9 and letters a-f, upper or lower case
+        all of these values map to the red, green, and blue color channels
+        in a 6-character notation, the first two characters = red channel, the second two characters = green channel, the third→ characters = blue channel  
+            if the first two characters match, the third and fourth characters match, and the last two characters match, then it may be shortened to a 3-character notation ex: https://remnote-user-data.s3.amazonaws.com/IHv4anFEDrSO2uGzsUBraQj_n5NZXR3BiPLzJbcxj835OoZgFeAizCiOOVihkqbABYVWYnjkdGp7FtlkYpwX6F28LHfqLKaVWG9D2HpfhzIDxX0tNO13VorEmMEfnOuF.png 
+        in a 3-character notation, the first character = red channel, the second channel = green channel, the third character = blue channel  
+        ex: to create the same maroon and yellow background colors, we could replace their keyword color values with hexadecimal values  .task {
+ 	background: #800000;
+ }
+ .count {
+ 	background: #ff0;
+ 	}
+    RGB & RGBa Colors
+        RGB color values use the rgb() function, it stand for red, green, and blue
+        https://remnote-user-data.s3.amazonaws.com/XCDcJiXcAER_LCnsw0FqZipyvl79eF5y4ENlD9h8SdfWcia-HPlaOfi_UCozq3BI87M8KwKhR1Gq9q_moXVaIv3ZG5b1x-ftragl-T0dympgQJdY_6NwQIx__LLJc7n_.png 
+        rgb() accept three comma-separated values, each of which is an integer fro 0 to 225
+            0 being pure black, 225 being pure white
+        first value in rgb() = red channel, second value = green channel, third value = blue channel
+        ex: to create shade of orange from before as an RGB color value, it would be rgb(255, 102, 0) 
+            .task {
+	background: rgb(128, 0 0);
+	/* rgb color values for maroon background */
+}
+.count {
+	background: rgb(225, 225, 0);
+	/* rgb color values for the yellow background */
+} 
+        rgb color values may include an alpha or transparency channel using the rgb() 
+            you specify amount of transparency with a decimal from 0 to 1 after the red, green, and blue values. 
+            /* syntax for rgb with transparency channel */
+property: rgba(red, green, blue, alpha transparency);
+            rgb() would need a fourth value, which must be b/w 0-1 including decimals - for transparency
+            0 = fully transparent color
+            1 = fully opaque color
+            ex: if we want our shade of orange to look 50% opaque, we'd use rgb(255, 102, 0, .5)
+            /* we want to change the opacity of our maroon and yellow background colors */
+.task {
+	background: rgba(128, 0, 0, .25);
+}
+.count {
+	background: rgba(225, 255, 0, 1);
+} 
+    HSL & HSLa Colors
+        HSL color values are hue, saturation, and lightness , where hue is a number from 0-360, and both saturation and lightness are percentages from 0 to 100
+        think of HSL as a degree on a color circle, with 0 and 360 meeting at the top
+            https://remnote-user-data.s3.amazonaws.com/HvhntyAvhm8AXLWrSacKaBITO4zQrHq--eTi9gXC-gvuU7AQ8j75QRHHzLvCvBj-Fgf5Ev4cQH8Kq3_JubqbIvjYYKXAUI8MQUP163CkGPBlDfno3cphXaDb4EG0XDMp.png HSL hues values run clockwise on the circle. 90 is the rightmost point, 180 is the bottom,  , and 270 is the leftmost point, and 360 and 0 meet at at the top. 
+            this means that red is both 0 and 360, aka the same color
+        uses the hsl() function
+        /* HSL syntax */
+property: hsl(hue, saturation, lightness); 
+
+/* HSLA format is this: */ 
+property: hsla(hue, saturation, lightness, alpha transparency); 
+        https://remnote-user-data.s3.amazonaws.com/NkYZXs3AdkxU5E_nZtT9gAQMzYVwjxIZd64LT_rw7Pj2v3EbJQmEZcbXfUWsFlECHlOTtzdtgpvQm1Pjui9cVjTzq8lUHkKD93dzyap7g5y9sDz3bbwqMwH6UQlc4i8N.png 
+        first value, the hue, is a number from 0-360 (360 represents the color wheel)
+        second value is saturation, and are percentage values from 0-100%
+            saturation value identifies how saturated with color the hue is, 0 being grayscale and 100% being fully saturated
+            reducing saturation moves you toward gray
+        third value is lightness, and are percentage values from 0-100%
+            lightness identifies how dark or light the hue value is, 0 being completely black and 100% being completely white
+            increasing lightness, moves you toward white. decreasing lightness, is gonna move you toward black.
+        ex: for orange, the HSL color value would be hsl(24, 100%, 50%)
+        .task {
+	background: hsl(0, 100%, 25%)
+	/*hsl color value for maroon: hsl(hue, saturation, light)*/
+}
+.count {
+	background: hsl(60, 100%, 50%)
+	/*hsl color value for yellow: hsl(hue, saturation, light)*/
+} 
+        HSL color values can also include a transparency channel (AKA alpha channel), like sRGB. it'll be expressed as a fourth value that's b/w 0-1 including decimals
+            ex: shade of orange with 50% opacity would be hsla(24, 100%, 50%, .5) 
+            ex: the same 25% maroon and a 100% opaque yellow background color  .task {
+ 	background: hsla(0, 100%, 25%, .25);
+ 	/*maroon background has 25% opacity*/
+ }
+ .count {
+ 	background: hsla(60, 100%, 50%, 1);
+ 	/*yellow bg has 100% opacity*/
+ } 
+        examples of core colors as you move around the circle: 
+Red is hsl(0, 100%, 50%);
+Yellow is hsl(60, 100%, 50%);
+Green is hsl(120, 100%, 50%);
+Cyan is hsl(180, 100%, 50%);
+Blue is hsl(240, 100%, 50%);
+Magenta is hsl(300, 100%, 50%);
+    Lengths
+        <length> - represents a distance value
+        all lengths must have a quantity and unit with no space in between them https://remnote-user-data.s3.amazonaws.com/kC14ZrjmWTfZ2CQ237aULxcr4eeCfLehI_-4eEXnoOq7h8omUDlm0pmBRdOb3A3ZLzl83s2R28WOVyU6odbpiB9-uVf_yqu5FIIUh_Q7Fy0TQNhowQoDEb7XOMuuFt1I.png 
+        several diff types of values for length, which all serve diff purposes
+        come in two diff forms: absolute and relative
+        can be used in numerous CSS properties such as: width, height, margin, padding, border-width, font-size, text-shadow
+    Absolute Lengths
+        fixed to a physical measurement, like inches, centimeters, millimeters
+        most popular unit is px
+        Pixels
+            a pixel = 1/96th of an inch
+            96 px = an inch
+                p {
+	font-size: 14px;
+} 
+    Relative Lengths
+        not fixed measurements - relies on length of another measurement
+        Percentages
+            represented by % 
+            defined in relation to another object
+            ex: to set the width of an element to 50%, we have to know the width of its parent element and the element it's sitting inside of. then we identify 50% of the parent element's width.  .col {
+ 	width: 50%;
+ }
+            so we've set the width of an element to 50%. now that 50% will be calculated relating to the width of the element's parent
+            Em 
+                em is a length type that's = an element's font size
+                    example: we set margin-left: 2em on an element would mean, "set a left margin that's twice the font size" of a font element 
+                ex: an element has 14px and a width set to 5em, then its width = 70px (14px * 5)  .banner {
+ 	font-size: 14px;
+ 	width: 5em;
+ 	/*total width of this element is (14px * 5em) = 70px */
+ }
+                When a font size is not explicitly stated for an element, the em unit will be relative to the font size of the closest parent element with a stated font size.
+            URLs
+                some properties allow you to specify the URL of another file, like  images
+                    example: background-image uses url(file.ext), where file.ext is the path and the file name of your image
+                    there shouldn't be space around the word url and the opening parenthesis 
+
+
